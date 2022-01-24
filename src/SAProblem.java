@@ -1,17 +1,17 @@
 package ICS;
 
-public class MCProblem extends Problem{
+public class SAProblem extends Problem{
 	private String name;
 	private String statement;
 	private String difficulty;
-	private char answer;
+	private String answer;
 	private LinkedList areas;
 	
-	public MCProblem(){
+	public SAProblem(){
 		super();
 	}
 	
-	public MCProblem(String name, String statement, String difficulty, char answer, String types){
+	public SAProblem(String name, String statement, String difficulty, String answer, String types){
 		super(name, statement, difficulty, types);
 		this.answer = answer;
 		/*
@@ -32,12 +32,12 @@ public class MCProblem extends Problem{
 		}*/
 	}
 	
-	public char getAnswer(){
+	public String getAnswer(){
 		return answer;
 	}
 	
-	public boolean checkAnswer(char answer){
-		return this.answer == answer;
+	public boolean checkAnswer(String answer){
+		return this.answer.equals(answer);
 	}
 	
 	/*

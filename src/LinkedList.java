@@ -45,7 +45,7 @@ public class LinkedList{
 	
 	public void addLast(Node n){
 		if (tail == null){
-			head = tail = null;
+			head = tail = n;
 			n.setPrev(null);
 			n.setNext(null);
 		}
@@ -59,20 +59,22 @@ public class LinkedList{
 	}
 	
 	public void delete(Node n){
-		if (head == null || n = null){
+		if (n == null || head == null){
 			return;
 		}
 		else if (n == head){
 			head = head.getNext();
-			head.setPrev(null);
+			if (head != null)
+				head.setPrev(null);
 		}
 		else if (n == tail){
 			tail = tail.getPrev();
-			tail.setNext(null);
+			if (tail != null)
+				tail.setNext(null);
 		}
 		else{
-			n.getPrev.setNext(n.getNext);
-			n.getNext.setNext(n.getPrev);
+			n.getPrev().setNext(n.getNext());
+			n.getNext().setNext(n.getPrev());
 			n.setNext(null);
 			n.setPrev(null);
 		}
@@ -81,7 +83,7 @@ public class LinkedList{
 	}
 	
 	public Node deleteLast(){
-		if (node == null)
+		if (tail == null)
 			return null;
 		Node temp = tail;
 		tail = tail.getPrev();
@@ -91,15 +93,65 @@ public class LinkedList{
 		return temp;
 	}
 	
+	public Node getIndex(int indexGoal, int curIndex, Node curNode){
+		if (indexGoal == curIndex){
+			return curNode;
+		}
+		return getIndex(indexGoal, curIndex+1, curNode.getNext());
+	}
+	
+	public Node getIndexHelper(int indexGoal){
+		return getIndex(indexGoal, 0, head);
+	}
+	
+	public void sortAlpha(){
+		if (head == null)
+			return;
+		for (int i = 0; i < size; i ++){
+			Node n = head;
+			for (int k = 0; k < size-i-1; k ++){
+				String strA = ((Problem)(n.getStore())).getName();
+				String strB = ((Problem)(n.getNext().getStore())).getName();
+				if (strB.compareTo(strA) < 0){
+					swapValues(n, n.getNext());
+				}
+				n = n.getNext();
+			}
+		}
+	}
+	
+	public void sortNum(){
+		if (head == null)
+			return;
+		
+		for (int i = 0; i < size; i ++){
+			Node n = head;
+			for (int k = 0; k < size-i-1; k ++){
+				int a = Integer.parseInt(((Problem)(n.getStore())).getDifficulty());
+				int b = Integer.parseInt(((Problem)(n.getNext().getStore())).getDifficulty());
+				if (b < a){
+					swapValues(n, n.getNext());
+				}
+				n = n.getNext();
+			}
+		}
+	}
+	
+	public void swapValues(Node a, Node b){
+		Problem temp = (Problem)(a.getStore());
+		a.setStore(b.getStore());
+		b.setStore(temp);
+	}
+	
 	public Node getTail(){
 		return tail;
 	}
 	
 	public int getSize(){
-		return length;
+		return size;
 	}
 	
 	public boolean isEmpty(){
-		return header == null;
+		return head == null;
 	}
 }

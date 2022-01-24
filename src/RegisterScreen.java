@@ -9,6 +9,7 @@ public class RegisterScreen extends JFrame {
 
 	 // Variables declaration                    
     private JButton jButton1;
+	private JButton jButton2;
     private JLabel jLabel1;
     private JLabel jLabel2;
     private JLabel jLabel3;
@@ -18,12 +19,15 @@ public class RegisterScreen extends JFrame {
 	private JOptionPane jOptionPane1;
     // End of variables declaration       
 	
+	//Constructor for login screen.
     public RegisterScreen() {
         initComponents();
     }
 	
+	//Method to setup all the GUI of the register screen.
     private void initComponents() {
-
+		
+		//Finishing the declaration of all the GUI components.
         jPasswordField1 = new JPasswordField();
         jLabel1 = new JLabel();
         jPasswordField2 = new JPasswordField();
@@ -31,7 +35,9 @@ public class RegisterScreen extends JFrame {
         jTextField1 = new JTextField();
         jLabel3 = new JLabel();
         jButton1 = new JButton();
-
+		jButton2 = new JButton();
+		
+		this.setTitle("Math Helper");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Enter Your Password");
@@ -46,7 +52,9 @@ public class RegisterScreen extends JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-
+		jButton2.setText("Back");
+		
+		//Setting up the layout of the screen
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -71,7 +79,7 @@ public class RegisterScreen extends JFrame {
                         .addGap(124, 124, 124))
                     .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton1)
-                        .addGap(167, 167, 167))))
+                        .addGap(167, 167, 167))))	
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -98,9 +106,9 @@ public class RegisterScreen extends JFrame {
                                             
 
     private void jButton1ActionPerformed(ActionEvent evt) {                                         
-        String user = jTextField1.getText();
-		String password1 = jPasswordField1.getText();
-		String password2 = jPasswordField2.getText();
+        String user = jTextField1.getText().trim();
+		String password1 = jPasswordField1.getText().trim();
+		String password2 = jPasswordField2.getText().trim();
 		boolean valid = true;
 		
 		if (password1.length() < 7 || password1.length() > 14){

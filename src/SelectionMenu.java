@@ -14,7 +14,8 @@ public class SelectionMenu extends JFrame {
 
         jButton1 = new JButton();
         jButton3 = new JButton();
-
+		
+		this.setTitle("Math Helper");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setText("Student Mode");
@@ -30,7 +31,8 @@ public class SelectionMenu extends JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-
+		
+		//Setting up layout of the GUI
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -56,7 +58,10 @@ public class SelectionMenu extends JFrame {
     }                
 
     private void jButton1ActionPerformed(ActionEvent evt) {                                         
-        // TODO add your handling code here:
+       StudentMode sm = new StudentMode();
+	   sm.setVisible(true);
+	   sm.setLocationRelativeTo(null);
+	   this.setVisible(false);
     }                                        
 
     private void jButton3ActionPerformed(ActionEvent evt) {                                         
